@@ -1,0 +1,207 @@
+.feed-page {
+  padding: var(--space-8) var(--space-8) var(--space-16);
+  max-width: var(--max-content-width);
+  margin: 0 auto;
+}
+
+.feed-header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: var(--space-6);
+  margin-bottom: var(--space-6);
+  flex-wrap: wrap;
+}
+
+.feed-title {
+  font-size: var(--font-size-3xl);
+  font-weight: 800;
+  background: linear-gradient(135deg, var(--color-text) 0%, var(--color-primary-light) 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.feed-subtitle {
+  color: var(--color-text-muted);
+  font-size: var(--font-size-sm);
+  margin-top: 4px;
+}
+
+.feed-search-wrap {
+  display: flex;
+  gap: var(--space-3);
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+.feed-search {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.feed-search-icon {
+  position: absolute;
+  left: var(--space-3);
+  color: var(--color-text-faint);
+  pointer-events: none;
+}
+
+.feed-search-input {
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+  padding: 0.625rem var(--space-10) 0.625rem 2.5rem;
+  color: var(--color-text);
+  font-size: var(--font-size-sm);
+  font-family: inherit;
+  width: 320px;
+  transition: border-color var(--transition-fast), box-shadow var(--transition-fast);
+  outline: none;
+}
+
+.feed-search-input:focus {
+  border-color: var(--color-primary);
+  box-shadow: 0 0 0 3px var(--color-primary-glow);
+}
+
+.feed-search-input::placeholder {
+  color: var(--color-text-faint);
+}
+
+.feed-search-clear {
+  position: absolute;
+  right: var(--space-3);
+  color: var(--color-text-faint);
+  background: none;
+  border: none;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+}
+
+.feed-search-clear:hover {
+  color: var(--color-text);
+}
+
+.btn-active {
+  border-color: var(--color-primary);
+  color: var(--color-primary-light);
+}
+
+.filter-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--color-primary);
+  margin-left: 2px;
+}
+
+.feed-filters {
+  background: var(--color-bg-card);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-lg);
+  padding: var(--space-4) var(--space-6);
+  margin-bottom: var(--space-5);
+  animation: slideUp 0.2s ease;
+}
+
+.feed-filter-row {
+  display: flex;
+  gap: var(--space-5);
+  align-items: flex-end;
+  flex-wrap: wrap;
+}
+
+.feed-filter-row .form-group {
+  min-width: 160px;
+  flex: 1;
+}
+
+.feed-tabs {
+  display: flex;
+  gap: var(--space-2);
+  margin-bottom: var(--space-6);
+  flex-wrap: wrap;
+}
+
+.feed-tab {
+  padding: 0.5rem var(--space-4);
+  border-radius: var(--radius-full);
+  font-size: var(--font-size-sm);
+  font-weight: 500;
+  color: var(--color-text-muted);
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid var(--color-border);
+  cursor: pointer;
+  transition: all var(--transition-fast);
+  font-family: inherit;
+}
+
+.feed-tab:hover {
+  border-color: var(--color-primary);
+  color: var(--color-text);
+}
+
+.feed-tab--active {
+  background: var(--color-primary-glow);
+  border-color: rgba(139, 92, 246, 0.4);
+  color: var(--color-primary-light);
+}
+
+.feed-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(360px, 1fr));
+  gap: var(--space-5);
+}
+
+.post-card-skeleton {
+  min-height: 220px;
+}
+
+.feed-pagination {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-4);
+  margin-top: var(--space-10);
+  padding-top: var(--space-6);
+  border-top: 1px solid var(--color-border);
+}
+
+.feed-page-info {
+  font-size: var(--font-size-sm);
+  color: var(--color-text-muted);
+}
+
+@media (max-width: 768px) {
+  .feed-page {
+    padding: var(--space-6) var(--space-4) var(--space-16);
+    padding-top: calc(var(--header-height) + var(--space-4));
+  }
+
+  .feed-header {
+    flex-direction: column;
+  }
+
+  .feed-search-input {
+    width: 100%;
+  }
+
+  .feed-search-wrap {
+    width: 100%;
+  }
+
+  .feed-search {
+    flex: 1;
+  }
+
+  .feed-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .feed-filter-row .form-group {
+    min-width: 120px;
+  }
+}

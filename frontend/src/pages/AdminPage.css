@@ -1,0 +1,120 @@
+.admin-page {
+  padding: var(--space-8) var(--space-8) var(--space-16);
+  max-width: var(--max-content-width);
+  margin: 0 auto;
+}
+
+.admin-header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: var(--space-4);
+  margin-bottom: var(--space-6);
+}
+
+.admin-stats {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: var(--space-4);
+  margin-bottom: var(--space-6);
+}
+
+.admin-search {
+  position: relative;
+  display: flex;
+  align-items: center;
+  margin-bottom: var(--space-5);
+}
+
+.admin-search .feed-search-input {
+  width: 360px;
+}
+
+.admin-table-wrap {
+  overflow-x: auto;
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-lg);
+}
+
+.admin-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: var(--font-size-sm);
+}
+
+.admin-table thead {
+  background: rgba(255, 255, 255, 0.03);
+  border-bottom: 1px solid var(--color-border);
+}
+
+.admin-table th {
+  padding: var(--space-3) var(--space-4);
+  text-align: left;
+  font-size: 0.7rem;
+  font-weight: 600;
+  color: var(--color-text-faint);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  white-space: nowrap;
+}
+
+.admin-table td {
+  padding: var(--space-3) var(--space-4);
+  border-bottom: 1px solid var(--color-border);
+  vertical-align: middle;
+}
+
+.admin-table tbody tr:last-child td {
+  border-bottom: none;
+}
+
+.admin-table tbody tr:hover {
+  background: rgba(255, 255, 255, 0.02);
+}
+
+.admin-row--inactive {
+  opacity: 0.5;
+}
+
+.admin-user-cell {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+}
+
+.admin-user-name {
+  font-weight: 600;
+}
+
+.admin-user-handle {
+  font-size: var(--font-size-xs);
+  color: var(--color-text-faint);
+}
+
+.admin-td-muted {
+  color: var(--color-text-muted);
+  font-size: var(--font-size-xs);
+}
+
+.admin-post-title {
+  font-weight: 600;
+  max-width: 280px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+@media (max-width: 768px) {
+  .admin-page {
+    padding: var(--space-4) var(--space-4) var(--space-16);
+    padding-top: calc(var(--header-height) + var(--space-4));
+  }
+
+  .admin-stats {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .admin-search .feed-search-input {
+    width: 100%;
+  }
+}

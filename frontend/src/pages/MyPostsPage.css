@@ -1,0 +1,44 @@
+.my-posts-page {
+  padding: var(--space-8) var(--space-8) var(--space-16);
+  max-width: var(--max-content-width);
+  margin: 0 auto;
+}
+
+.my-posts-header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: var(--space-4);
+  margin-bottom: var(--space-8);
+  flex-wrap: wrap;
+}
+
+.my-posts-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(360px, 1fr));
+  gap: var(--space-5);
+}
+
+.my-post-wrapper {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+}
+
+.my-post-actions {
+  display: flex;
+  gap: var(--space-2);
+  padding: 0 var(--space-1);
+  flex-wrap: wrap;
+}
+
+@media (max-width: 768px) {
+  .my-posts-page {
+    padding: var(--space-4) var(--space-4) var(--space-16);
+    padding-top: calc(var(--header-height) + var(--space-4));
+  }
+
+  .my-posts-grid {
+    grid-template-columns: 1fr;
+  }
+}
