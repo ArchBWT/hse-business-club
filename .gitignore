@@ -1,0 +1,15 @@
+backend/
+  __pycache__/
+  .env
+  test.db
+  .pytest_cache/
+
+frontend/
+  node_modules/
+  dist/
+
+*.pyc
+*.pyo
+.DS_Store
+.env.local
+.env.*.local
