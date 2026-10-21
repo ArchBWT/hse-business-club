@@ -71,6 +71,35 @@ async def get_current_user(
     return user
 
 
+bearer_scheme_optional = HTTPBearer(auto_error=False)
+
+
+async def get_current_user_optional(
+    credentials: Optional[HTTPAuthorizationCredentials] = Depends(bearer_scheme_optional),
+    db: AsyncSession = Depends(get_db),
+):
+    if not credentials:
+        return None
+    try:
+        from app.models.user import User
+
+        payload = decode_token(credentials.credentials)
+        if payload.get("type") != "access":
+            return None
+
+        user_id = payload.get("sub")
+        if user_id is None:
+            return None
+
+        result = await db.execute(select(User).where(User.id == int(user_id)))
+        user = result.scalar_one_or_none()
+        if user is None or not user.is_active:
+            return None
+        return user
+    except Exception:
+        return None
+
+
 async def get_current_admin(current_user=Depends(get_current_user)):
     if not current_user.is_admin:
         raise HTTPException(

@@ -5,7 +5,7 @@ from sqlalchemy import select, func, and_, or_
 from sqlalchemy.orm import selectinload
 
 from app.core.database import get_db
-from app.core.security import get_current_user, get_current_admin
+from app.core.security import get_current_user, get_current_user_optional, get_current_admin
 from app.models.post import Post, PostType, PostStatus
 from app.models.user import User
 from app.models.application import Application, ApplicationStatus
@@ -62,7 +62,7 @@ async def list_posts(
     search: Optional[str] = None,
     is_remote: Optional[bool] = None,
     db: AsyncSession = Depends(get_db),
-    current_user: Optional[User] = Depends(get_current_user),
+    current_user: Optional[User] = Depends(get_current_user_optional),
 ):
     """Public feed of posts with filtering and pagination."""
     filters = []
@@ -155,7 +155,7 @@ async def get_my_posts(
 @router.get("/{post_id}", response_model=PostResponse)
 async def get_post(
     post_id: int,
-    current_user: Optional[User] = Depends(get_current_user),
+    current_user: Optional[User] = Depends(get_current_user_optional),
     db: AsyncSession = Depends(get_db),
 ):
     """Get a single post by ID and increment view count."""
@@ -169,6 +169,10 @@ async def get_post(
     # Increment views
     post.views_count += 1
     await db.flush()
+    result = await db.execute(
+        select(Post).options(selectinload(Post.author)).where(Post.id == post_id)
+    )
+    post = result.scalar_one()
 
     enriched = await _enrich_post(post, current_user, db)
     return PostResponse.model_validate(enriched)
@@ -197,7 +201,10 @@ async def update_post(
         setattr(post, field, value)
 
     await db.flush()
-    await db.refresh(post, ["author"])
+    result = await db.execute(
+        select(Post).options(selectinload(Post.author)).where(Post.id == post.id)
+    )
+    post = result.scalar_one()
     enriched = await _enrich_post(post, current_user, db)
     return PostResponse.model_validate(enriched)
 

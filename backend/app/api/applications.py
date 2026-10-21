@@ -178,5 +178,10 @@ async def respond_to_application(
     application.status = body.status
     application.response_message = body.response_message
     await db.flush()
-    await db.refresh(application, ["applicant"])
+    result = await db.execute(
+        select(Application)
+        .options(selectinload(Application.applicant))
+        .where(Application.id == application_id)
+    )
+    application = result.scalar_one()
     return application

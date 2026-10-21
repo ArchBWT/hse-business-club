@@ -112,14 +112,14 @@ class TestAuth:
 
     async def test_login_wrong_password(self, client):
         await client.post("/api/auth/register", json={
-            "email": "u@hse.ru", "username": "u1", "full_name": "U", "password": "Password1"
+            "email": "u@hse.ru", "username": "user1", "full_name": "User", "password": "Password1"
         })
         resp = await client.post("/api/auth/login", json={"email": "u@hse.ru", "password": "wrong"})
         assert resp.status_code == 401
 
     async def test_token_refresh(self, client):
         await client.post("/api/auth/register", json={
-            "email": "r@hse.ru", "username": "r1", "full_name": "R", "password": "Password1"
+            "email": "r@hse.ru", "username": "refresh_user", "full_name": "Refresh", "password": "Password1"
         })
         login_resp = await client.post("/api/auth/login", json={"email": "r@hse.ru", "password": "Password1"})
         refresh_token = login_resp.json()["refresh_token"]

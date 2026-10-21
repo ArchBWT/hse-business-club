@@ -2,8 +2,10 @@
 **/*.pyc
 **/*.pyo
 backend/.env
-backend/test.db
+backend/*.db
+backend/venv/
 backend/.pytest_cache/
+venv/
 frontend/node_modules/
 frontend/dist/
 .DS_Store
