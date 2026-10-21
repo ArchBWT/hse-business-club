@@ -11,7 +11,7 @@
 
 ```bash
 # Клонировать репозиторий
-git clone <URL>
+git clone <https://github.com/ArchBWT/hse-business-club>
 cd ВШЭ
 
 # Запустить все сервисы
