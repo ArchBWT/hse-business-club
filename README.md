@@ -1,4 +1,4 @@
-# HSE Business Club — Стартапы и Вакансии
+# HSE Business Club
 
 Прототип модуля стартапов и вакансий для Telegram Mini App Бизнес-клуба ВШЭ.
 
